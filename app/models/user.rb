@@ -5,4 +5,6 @@ class User < ApplicationRecord
   validates :name, presence: {message: 'を入力して下さい'}
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  
+  has_many :articles
 end
