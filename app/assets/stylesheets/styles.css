@@ -1,0 +1,10 @@
+@charset "utf-8";
+ 
+ /* ヘッダー */
+header {
+  position: fixed; /* 画面をスクロールしてもヘッダーを常に上部固定 */
+  width: 100%; /* 横幅を画面いっぱいに設定 */
+  height: 46px; /* ヘッダーの高さを設定 */
+  background: #f8f4d6; /* 背景色の設定 */
+  border-bottom: solid 1px #2f4f4f; /*ヘッダの下に1ピクセルの実線を設定 */
+ }

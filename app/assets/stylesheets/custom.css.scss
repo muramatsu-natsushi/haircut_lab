@@ -20,3 +20,8 @@ $gray-medium-light: #eaeaea;
   margin-top: 45px;
   @include box_sizing;
 }
+
+.formposition {
+  margin: 0 auto;
+  width: 600px;
+}

@@ -1,4 +1,4 @@
 class Content < ApplicationRecord
   belongs_to :article
-  belongs_to :image
+  has_many :images
 end

@@ -3,6 +3,9 @@ class VideoUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
+  include CarrierWave::Video
+  
+  process encode_video: [:mp4, callbacks: { after_transcode: :set_success } ]
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -37,7 +40,7 @@ class VideoUploader < CarrierWave::Uploader::Base
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_whitelist
-    %w(jpg jpeg gif png MOV wmv)
+    %w(jpg jpeg gif png mov wmv)
   end
 
   # Override the filename of the uploaded files:

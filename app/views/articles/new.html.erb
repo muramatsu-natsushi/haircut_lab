@@ -1,0 +1,19 @@
+<%= form_tag('/articles') do |f| %>
+
+  <div class="field">
+    <%= label_tag :title %><br>
+    <%= text_field_tag "article[title]" %>
+  </div>
+  
+  <div class="field">
+    <%= label_tag :content %><br>
+    <%= text_field_tag "article[content]" %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :video %>
+    <%= file_field_tag "article[video]", :accept => 'video/*' %>
+  </div>
+
+  <%= submit_tag "Send" %>
+<% end %>
