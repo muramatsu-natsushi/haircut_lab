@@ -9,8 +9,9 @@ development:
   adapter: mysql2
   encoding: utf8
   database: haircut_lab_development
-  username: <%=ENV['C9_USER']%>
-  host: <%=ENV['IP']%>
+  username: <%=ENV['DB_USER']%>
+  password: <%=ENV['DB_PASSWORD']%>
+  host: localhost
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -20,12 +21,14 @@ test:
   adapter: mysql2
   encoding: utf8
   database: haircut_lab_test
-  username: <%=ENV['C9_USER']%>
-  host: <%=ENV['IP']%>
+  username: <%=ENV['DB_USER']%>
+  password: <%=ENV['DB_PASSWORD']%>
+  host: localhost
 
 production:
   adapter: mysql2
   encoding: utf8
   database: haircut_lab
-  username: <%=ENV['C9_USER']%>
-  host: <%=ENV['IP']%>
+  username: <%=ENV['DB_USER']%>
+  password: <%=ENV['DB_PASSWORD']%>
+  host: localhost
