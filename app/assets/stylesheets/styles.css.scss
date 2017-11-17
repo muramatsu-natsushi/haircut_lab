@@ -6,20 +6,64 @@
           box-sizing: border-box;
 }
 
+.body_color {
+  background-color: #E6E6E6;
+}
+
+
  /* ヘッダー */
 header {
 
   width: 100%; /* 横幅を画面いっぱいに設定 */
   padding: 10px;
   height: auto; /* ヘッダーの高さを設定 */
-  background: #E5E5E5; /* 背景色の設定 */
+  background: #4D4D4D; /* 背景色の設定 */
+  color: #ffffff;
   a:link{
    text-decoration: none!important;
   }
  }
 
 .header_title {
-  color: #333333;
+  color: #ffffff;
   font: bold 2em '遊ゴシック';
   display: inline;
+}
+
+/* フッター*/
+footer {
+
+  width: 100%; /* 横幅を画面いっぱいに設定 */
+  padding: 20px;
+  height: auto; /* ヘッダーの高さを設定 */
+  background: #4D4D4D; /* 背景色の設定 */
+  color: #ffffff;
+  a:link{
+   text-decoration: none!important;
+  }
+ }
+
+.category_aria {
+  height: 500px;
+  min-width: 250px;
+  max-width: 360px;
+   /* background: #E6DACF;背景色の設定 */
+  /* border: 2px solid #808080; */
+}
+
+.image_aria {
+  height: 200px;
+  min-width: 300px;
+  max-width: 500px;
+  background: #E6DACF; /* 背景色の設定 */
+  border: 2px solid #808080;
+}
+
+.content_aria {
+  height: 200px;
+  min-width: 300px;
+  max-width: 500px;
+  margin-top: 20px;
+  background: #E6DACF; /* 背景色の設定 */
+  border: 2px solid #808080;
 }

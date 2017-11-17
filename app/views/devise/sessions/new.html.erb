@@ -10,24 +10,27 @@
         <%= f.email_field :email, autofocus: true, class: 'form-control' %>
       </div>
     </div>
-  
+
     <div class="field form-group row">
       <%= f.label :password, class: 'col-sm-4 col-form-label' %><br />
       <div class="col-sm-8">
         <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
       </div>
     </div>
-  
+
     <% if devise_mapping.rememberable? -%>
       <div class="field form-group">
         <%= f.check_box :remember_me %>
+      <small>
         <%= f.label :remember_me %>
+      </small>
       </div>
     <% end -%>
-  
+
     <div class="actions">
       <%= f.submit "Log in" %>
     </div>
   <% end %>
+</div>
 </div>
 <%= render "devise/shared/links" %>

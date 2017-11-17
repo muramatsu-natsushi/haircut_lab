@@ -5,19 +5,21 @@
 <%= csrf_meta_tags %>
 <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-<!-- /jQueryを読み込む -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
- <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <!-- /スクリプトを読み込む -->
 <%= javascript_include_tag 'application' %>
 
 
   </head>
 
-  <body>
+  <body class="body_color">
 
     <header>
       <div class="container">
+        <div class="row">
+          <small class="">
+            美容師向け、カット技術向上の学習サイト
+         </small>
+        <div></ br>
         <div class="row">
 
             <%= link_to  home_index_path do %>
@@ -28,14 +30,14 @@
             <% end %>
 
      <!-- 1.ナビゲーションバーの設定 -->
-          <nav class="navbar navbar-expand-lg navbar-light bg-lighat">
+          <nav class="navbar navbar-expand-lg navbar-dark bg-lighat">
                  <!-- 2.ヘッダ情報 -->
                     <a class="navbar-brand">メニュー</a>
                     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="ナビゲーションの切替">
                       <span class="navbar-toggler-icon"></span>
                     </button>
               <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
+                <div class="navbar-nav ">
                     <% if user_signed_in? %>
 
                     Logged in as <storong><%= current_user.email %></storong>.
@@ -43,6 +45,8 @@
                         <%= link_to 'プロフィール変更', edit_user_registration_path,  class:"" %>
                         <%= link_to 'ログアウト', sign_out_path,  class:"" %></li>
                       <% else %>
+                        <%= link_to 'ホーム',  home_index_path,  class:"nav-item nav-link" %>
+                        <%= link_to 'ヘアカット動画',  home_index_path,  class:"nav-item nav-link" %>
                         <%= link_to '会員登録', new_user_registration_path,  class:"nav-item nav-link" %>
                         <%= link_to 'ログイン', new_user_session_path,  class:"nav-item nav-link" %>
                     <% end %>
@@ -53,45 +57,32 @@
         </div>
 
 
-        </header>
-
-
-
-
-     <!-- 3.リストの配置
-     <ul class="nav navbar-nav">
-         <li class="active"><a href="#">本部からのお知らせ</a></li>
-         <li><a href="#">在庫確認</a></li>
-         <li><a href="#">入出庫登録</a></li>
-     </ul>
-    4.ボタン
-     <button type="button" class="btn btn-default navbar-btn">
-         <span class="glyphicon glyphicon-envelope"></span>
-     </button>-->
-<!--
-        <nav class="col-4">
-        user_signed_in? はユーザーがログインしているか調べるdeviseのhelperメソッド
-          <% if user_signed_in? %>
-             current_user は現在ログインしているUserオブジェクトを返すdeviseのHelperメソッド
-      - *_path はUserモデルを作成した時に、
-            deviseにより自動で作成されてますので、rake routesで確認出来ます -->
-            <!-- Logged in as <storong><%= current_user.email %></storong>.
-            <%= link_to '記事エディット', new_article_path %> |
-            <%= link_to 'プロフィール変更', edit_user_registration_path %> |
-            <%= link_to 'ログアウト', sign_out_path %>
-          <% else %>
-            <%= link_to '会員登録', new_user_registration_path %> |
-            <%= link_to 'ログイン', new_user_session_path %>
-          <% end %>
-        </nav>
-      </div>
-    </header> -->
+    </header>
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
     <%= yield %>
+
+
+    <footer>
+      <div class="container">
+        <div class="row">
+           <small class="mx-auto">
+             Copyright (C) 2017 ヘアカット研究所.All Rights Reserved.
+          </small>
+        </div>
+      </div>
+    </footer>
+
+
+
     <%= debug(params) if Rails.env.development? %>
+
+
+
+
+
 
 
   </body>
