@@ -1,0 +1,79 @@
+version: '2'
+services:
+  web:
+    container_name: haircut_lab_web
+    build:
+      context: .
+    volumes:
+      - .:/haircut_lab
+      - /etc/localtime:/etc/localtime
+    ports:
+      - "3030:3030"
+    environment:
+      # "AWS_ACCESS_KEY_ID": "${AWS_ACCESS_KEY_ID}"
+      # "AWS_SECRET_ACCESS_KEY": "${AWS_SECRET_ACCESS_KEY}"
+      # "AWS_iDEFAULT_REGION": "${AWS_DEFAULT_REGION}"
+      # "AWS_REGION": "${AWS_REGION}"
+      "DB_HOST": mysql
+      "DB_USER": "${DB_USER}"
+      "DB_PASSWORD": "${DB_PASSWORD}"
+      "RAILS_ENV": "${RAILS_ENV}"
+    tty: true
+    stdin_open: true
+    links:
+      - mysql
+      - redis
+
+  mysql:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev.mysql
+    container_name: haircut_lab_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"   #rootユーザ用のパスワード
+      MYSQL_USER: "${DB_USER}"                #作業ユーザ名
+      MYSQL_PASSWORD: "${DB_PASSWORD}"        #作業ユーザ用のパスワード
+      MYSQL_DATABASE: "${DB_USER}_${DB_ENV}"  #作成するDB名
+      TZ: "Asia/Tokyo"
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql:/var/lib/mysql
+
+  sidekiq:
+    container_name: haircut_lab_sidekiq
+    build:
+      context: .
+      dockerfile: Dockerfile.dev.sidekiq
+    depends_on:
+      - mysql
+      - redis
+    volumes:
+      - .:/haircut_lab
+      - /etc/localtime:/etc/localtime
+    ports:
+      - 3000:3000
+    environment:
+      "DB_ENV": "${DB_ENV}"
+      "DB_HOST": mysql
+      "DB_USER": "${DB_USER}"
+      "DB_PASSWORD": "${DB_PASSWORD}"
+      # "RAILS_ENV": "${RAILS_ENV}"
+      # "SECRET_KEY_BASE": "${SECRET_KEY_BASE}"
+    tty: true
+    stdin_open: true
+    links:
+      - mysql
+      - redis
+
+  redis:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev.redis
+    container_name: haircut_lab_redis
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - 6379:6379
+    volumes:
+      - ./redis.conf:/usr/local/etc/redis/redis.conf

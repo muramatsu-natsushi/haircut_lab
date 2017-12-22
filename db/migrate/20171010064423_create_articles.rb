@@ -4,7 +4,10 @@ class CreateArticles < ActiveRecord::Migration[5.0]
       t.references :user, foreign_key: true
       t.string :title
       t.string :image_path
-      
+      t.string :video_path
+      t.string :content
+
+
       t.timestamps
     end
   end
